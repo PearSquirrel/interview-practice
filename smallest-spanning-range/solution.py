@@ -52,6 +52,6 @@ def min_range(lists):
             max_ = neighbor
 
 # main program
-_input = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
-print "input:", _input
-print "minimum range:", min_range(_input)
+input_ = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
+print "input:", input_
+print "minimum range:", min_range(input_)
