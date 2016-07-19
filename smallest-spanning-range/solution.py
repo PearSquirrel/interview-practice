@@ -20,8 +20,6 @@ def minRange(lists):
 
     # initialize tracked values
     minRange = 100000000
-    smallL = 0
-    smallR = minRange
     _max = Node(-1, 0, 0)
 
     # populate a min-heap with the lists' left-most elements and track the max
