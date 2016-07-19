@@ -14,8 +14,8 @@ class Node:
 
 def min_range(lists):
     # convert each list element from int to Node
-    for list_index, _list in enumerate(lists):
-        for index, value in enumerate(_list):
+    for list_index, list_ in enumerate(lists):
+        for index, value in enumerate(list_):
             lists[list_index][index] = Node(value, list_index, index)
 
     # initialize tracked values
@@ -24,10 +24,10 @@ def min_range(lists):
 
     # populate a min-heap with the lists' left-most elements and track the max
     h = []
-    for _list in lists:
-        heappush(h, _list[0])
-        if _list[0].value > max_.value:
-            max_ = _list[0]
+    for list_ in lists:
+        heappush(h, list_[0])
+        if list_[0].value > max_.value:
+            max_ = list_[0]
 
     # track the current minimum range, stopping once a list has been depleted
     while True:
