@@ -19,7 +19,7 @@ def min_range(lists):
             lists[list_index][index] = Node(value, list_index, index)
 
     # initialize tracked values
-    minRange = 100000000
+    min_range = 100000000
     _max = Node(-1, 0, 0)
 
     # populate a min-heap with the lists' left-most elements and track the max
@@ -35,15 +35,15 @@ def min_range(lists):
         _min = heappop(h)
         _range = _max.value - _min.value
 
-        # update the minRange if needed
-        if _range < minRange:
-            minRange = _range
-            minL = _min.value
-            minR = _max.value
+        # update the min_range if needed
+        if _range < min_range:
+            min_range = _range
+            min_l = _min.value
+            min_r = _max.value
 
         # if a list has been processed, the smallest range has been found
         if _min.index >= len(lists[_min.list_index]) - 1:
-            return (minL, minR)
+            return (min_l, min_r)
 
         # if there exists a neighbor, add it to the heap
         neighbor = lists[_min.list_index][_min.index + 1]
