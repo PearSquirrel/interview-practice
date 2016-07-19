@@ -12,7 +12,7 @@ class Node:
     def __repr__(self):
         return "(%s, %s, %s)" % (self.value, self.list_index, self.index)
 
-def minRange(lists):
+def min_range(lists):
     # convert each list element from int to Node
     for list_index, _list in enumerate(lists):
         for index, value in enumerate(_list):
@@ -54,4 +54,4 @@ def minRange(lists):
 # main program
 _input = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
 print "input:", _input
-print "minimum range:", minRange(_input)
+print "minimum range:", min_range(_input)
