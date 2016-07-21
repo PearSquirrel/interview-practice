@@ -16,7 +16,7 @@ public class DumbStack<T> {
     }
 
     public T pop() {
-        if (queue1.isEmpty()) {
+        if (isEmpty()) {
             throw new NoSuchElementException();
         }
         T cur = queue1.remove();
@@ -32,7 +32,7 @@ public class DumbStack<T> {
     }
 
     public T peek() {
-        if (queue1.isEmpty()) {
+        if (isEmpty()) {
             throw new NoSuchElementException();
         }
         T cur = queue1.peek();
@@ -47,8 +47,12 @@ public class DumbStack<T> {
         return cur;
     }
 
+    public boolean isEmpty() {
+        return queue1.isEmpty();
+    }
+
     public static void main(String[] args) {
-        System.out.println("This is a horrible way to make a stack :)");
+        log("This is a horrible way to make a stack :)");
         DumbStack<String> dumb = new DumbStack<>();
         dumb.push("a");
         dumb.push("b");
