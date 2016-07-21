@@ -66,10 +66,8 @@ public class Multiset<T> implements Iterable {
         private Iterator<Entry<T>> entryIterator;
         Multiset<T>.Entry<T> currentEntry;
         int remainingOccurences;
-        private int savedChangeNumber;
 
         private MultisetIterator() {
-            savedChangeNumber = changeNumber;
             entryIterator = entrySet().iterator();
             remainingOccurences = 0;
         }
