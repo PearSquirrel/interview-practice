@@ -3,15 +3,12 @@ import java.util.*;
 public class Multiset<T> implements Iterable {
 
     Map<T, MutableInteger> internalMap;
-    private int changeNumber;
 
     public Multiset() {
         internalMap = new HashMap<>();
-        changeNumber = 0;
     }
 
     public Multiset add(T element) {
-        changeNumber++;
         MutableInteger count = internalMap.get(element);
         if (count == null) {
             internalMap.put(element, new MutableInteger(1));
@@ -30,7 +27,6 @@ public class Multiset<T> implements Iterable {
     }
 
     public Multiset remove(T element) {
-        changeNumber++;
         MutableInteger count = internalMap.get(element);
         if (count != null) {
             count.decrement();
