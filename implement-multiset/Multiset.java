@@ -68,7 +68,7 @@ public class Multiset<T> implements Iterable {
         int remainingOccurences;
         private int savedChangeNumber;
 
-        public MultisetIterator() {
+        private MultisetIterator() {
             savedChangeNumber = changeNumber;
             entryIterator = entrySet().iterator();
             remainingOccurences = 0;
