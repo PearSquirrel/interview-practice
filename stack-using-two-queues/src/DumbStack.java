@@ -7,8 +7,8 @@ public class DumbStack<T> {
     private Queue<T> queue2;
 
     public DumbStack() {
-        queue1 = new LinkedList<T>();
-        queue2 = new LinkedList<T>();
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
     }
 
     public void push(T element) {
@@ -52,7 +52,7 @@ public class DumbStack<T> {
     }
 
     public static void main(String[] args) {
-        log("This is a horrible way to make a stack :)");
+        log("This class is impressively inefficient.");
         DumbStack<String> dumb = new DumbStack<>();
         dumb.push("a");
         dumb.push("b");
