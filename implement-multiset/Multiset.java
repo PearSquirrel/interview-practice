@@ -1,17 +1,17 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class Multiset<T> {
+public class Multiset<T> implements Iterable {
 
     Map<T, MutableInteger> internalMap;
+    private int changeNumber;
 
     public Multiset() {
         internalMap = new HashMap<>();
+        changeNumber = 0;
     }
 
     public Multiset add(T element) {
+        changeNumber++;
         MutableInteger count = internalMap.get(element);
         if (count == null) {
             internalMap.put(element, new MutableInteger(1));
@@ -30,9 +30,13 @@ public class Multiset<T> {
     }
 
     public Multiset remove(T element) {
+        changeNumber++;
         MutableInteger count = internalMap.get(element);
-        if (count != null && count.decrement() <= 0) {
-            internalMap.remove(element);
+        if (count != null) {
+            count.decrement();
+            if (count.get() <= 0) {
+                internalMap.remove(element);
+            }
         }
         return this;
     }
@@ -51,6 +55,47 @@ public class Multiset<T> {
             set.add(new Entry<>(key, internalMap.get(key).get()));
         }
         return set;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new MultisetIterator();
+    }
+
+    private class MultisetIterator implements Iterator {
+        private Iterator<Entry<T>> entryIterator;
+        Multiset<T>.Entry<T> currentEntry;
+        int remainingOccurences;
+        private int savedChangeNumber;
+
+        public MultisetIterator() {
+            savedChangeNumber = changeNumber;
+            entryIterator = entrySet().iterator();
+            remainingOccurences = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return entryIterator.hasNext() || remainingOccurences > 0;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            if (remainingOccurences <= 0) {
+                currentEntry = entryIterator.next();
+                remainingOccurences = currentEntry.getCount();
+            }
+            remainingOccurences--;
+            return currentEntry.getElement();
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 
     private class MutableInteger {
@@ -119,10 +164,19 @@ public class Multiset<T> {
         set.add("b").add("b").add("b");
         set.add("c");
         set.add("d").remove("d");
-        log(set.count("a"));
-        log(set.count("b"));
-        log(set.count("c"));
-        log(set.count("d"));
+        log("a: " + set.count("a"));
+        log("b: " + set.count("b"));
+        log("c: " + set.count("c"));
+        log("d: " + set.count("d"));
+        log("----------");
+        Iterator<String> iterator = set.iterator();
+        log(iterator.next());
+        log(iterator.next());
+        log(iterator.next());
+        log(iterator.next());
+        log(iterator.next());
+        log(iterator.next());
+        log(iterator.next());
     }
 
     private static void log(Object o) {
