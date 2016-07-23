@@ -57,5 +57,6 @@ def internal_merge_sort(a, o, t, s, left, right):
         o[copy_index] = t[copy_index]
         copy_index += 1
 
-input_ = [2,7,5,5,2,7,0,8,1]
+#input_ = [2,7,5,5,2,7,0,8,1]
+input_ = [1,5,3,2,4,6,0]
 max_surpasser(input_)
