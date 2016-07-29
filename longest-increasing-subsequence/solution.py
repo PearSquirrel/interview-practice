@@ -18,7 +18,8 @@ def binary_search(list_, element):
     hi = len(list_)
     while lo < hi:
         mid = lo + (hi - lo) // 2
-        if element < list_[mid]:
+        # <= for strictly increasing, < for nonstrictly increasing
+        if element <= list_[mid]:
             hi = mid
         else: # element <= list_[mid]
             lo = mid + 1
@@ -44,6 +45,6 @@ def longest_increasing_subsequence(list_):
         print [ll_to_list(head) for head in heads]
     return ll_to_list(heads[-1])
 
-list_ = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+list_ = [0, 8, 4, 12, 2, 10, 6, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
 print "list:", list_
 print longest_increasing_subsequence(list_)
