@@ -11,5 +11,6 @@ def longest_alternating_subsequence(list_):
 list_ = [3,2,4,6,7,1,0,8,9]
 list_ = [1,2,3,3,3,1,3,7,2,3,3,3,1,4,5,5,5,1,2]
 list_ = [3,1,3,3,4,2,1,7]
+list_ = [0,1,-3,-4,-5,-3, -4]
 print "list:", list_
 print longest_alternating_subsequence(list_)
